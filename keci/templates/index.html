@@ -1,0 +1,193 @@
+<html>
+    <head>
+      {% block title %}<title>Keçi</title>{% endblock %}
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="description" content="Keçi, ortak proje geliştirme platformu.">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      {% load static %}
+      <link rel="shortcut icon" href="{% static 'images/logo.png' %}">
+       <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <!-- jQuery library -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <!-- Latest compiled JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      <script>
+        function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+          x.className += " responsive";
+        } else {
+          x.className = "topnav";
+        }
+      } 
+      </script>
+      <style>
+ /* Add a black background color to the top navigation */
+
+ .topnav {
+  top: 0;
+  opacity: 1;
+  /* background color ile opacity ayarlarsan yazılarda değişiklik olmaz */
+  /* background-color: #3331; */
+  background-color: rgba(25,25,25,0.9);
+  overflow: hidden;
+  z-index: 1;
+  width: 100%;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+
+/* Hide the link that should open and close the topnav on small screens */
+.topnav .icon {
+  display: none;
+}
+
+/* Add a dark background on topnav links and the dropdown button on hover */
+.topnav a:not(#logo):hover {
+  background-color: rgba(25,25,25,0.4);/* #555;*/
+  color: white;
+}
+
+/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) {
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .topnav.responsive .dropdown {float: none;}
+  .topnav.responsive .dropdown-content {position: relative;}
+  .topnav.responsive .dropdown .dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+body {
+    height: 100%;
+    font-family: "Computer Modern", sans-serif;
+    background-color: rgb(255, 255, 255);
+    
+}
+
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+.search_topnav {
+  display: grid;
+  grid-auto-flow: column;
+  float: right;
+  margin-right: 75px;
+  margin-top: -40px;
+  line-height: 0.5em;
+  font-size: 12px;
+  height: 1%;
+  width: auto;
+}
+#keci_submit {
+  background-color: #711111;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+#keci_submit:hover {
+  background-color: rgb(184, 88, 88);
+}
+#searchbar {
+  width: 200px;
+}
+#advanced_search {
+  float: right;
+  margin-right: 460px;
+  margin-top: -25px;
+}
+
+      </style>
+    </head>
+    <body>
+      <nav>
+        <div class="topnav" id="myTopnav">
+          <a href="{% url 'keci_home' %}" class="navbar-brand" id="logo"><img src="{% static 'images/logo-nav.png' %}" style="line-height: 24px; width: 24px; height: 24px;"></a> 
+          <a href="{% url 'keci_home' %}">Topluluk</a>
+          <a href="{% url 'keci_home' %}">Haberler</a>
+          <a href="{% url 'keci_home' %}">Dökümanlar</a>
+          <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+        </div>
+        <div class="search_topnav">
+          <input id="searchbar" type="text" placeholder="Proje adı veya id..."/><select id="branchbar">
+            <option value="Language">Bütün alanlar</option>
+            <option value="Language">Dil</option>
+            <option value="Formel">Formel</option>
+            <option value="Empirical">Empirik</option>
+            <option value="Experimental">Deneysel Veri</option>
+            <option value="Technical">Teknik</option>
+          </select><input id="keci_submit" type="submit" value="Ara">
+        </div>
+        <a id="advanced_search" href="{% url 'keci_advanced_search' %}">Gelişmiş Arama</a>
+      </nav>
+      {% block content %}
+      {% endblock %}
+    </body>
+</html>
+  
+
+<!--div class="field has-addons">
+  <div class="control">
+    <input class="input is-small" type="text" name="query" placeholder="Search..." aria-label="Search term or terms">
+    <p class="help"><a href="{% url 'help' %}">Yardım</a> | <a href="{% url 'keci_advanced_search' %}">Gelişmiş Arama</a></p>
+  </div>
+  <div class="control">
+    <div class="select is-small">
+      <select name="searchtype" aria-label="Field to search">
+        <option value="all" selected="selected">All fields</option>
+        <option value="title">Title</option>
+        <option value="author">Author</option>
+        <option value="abstract">Abstract</option>
+        <option value="comments">Comments</option>
+        <option value="journal_ref">Journal reference</option>
+        <option value="acm_class">ACM classification</option>
+        <option value="msc_class">MSC classification</option>
+        <option value="report_num">Report number</option>
+        <option value="paper_id">arXiv identifier</option>
+        <option value="doi">DOI</option>
+        <option value="orcid">ORCID</option>
+        <option value="author_id">arXiv author ID</option>
+        <option value="help">Help pages</option>
+        <option value="full_text">Full text</option>
+      </select>
+    </div>
+  </div>
+  <input type="hidden" name="source" value="header">
+  <button class="button is-small is-cul-darker">Search</button>
+</div-->
