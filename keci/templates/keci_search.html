@@ -1,6 +1,124 @@
 {% extends "index.html" %}
+{% load custom_tags %}
 {% block title %}
   <title>Arama</title>
 {% endblock %}
 {% block content %}
+<h1>Deneme</h1>
+
+<form class="form-inline my-2 my-lg-0" action="{% url 'keci_search' %}">
+  <input class="form-control mr-sm-2" type="search"   placeholder="Arama terimleri" aria-label="Search" name="search">
+  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Ara</button>
+</form>
+
+<ol class="project-list breathe-horizontal" start="1">
+  {% for project in projects %}
+  <li class="keci-result">
+    <div class="is-marginless">
+      <p class="list-title is-inline-block"><a href="{% url 'project' id=project.id %}">k-id:{{ project.id }}</a>
+        <span>&nbsp;[<a href="{% url 'download_pdf' id=project.id %}">pdf</a>, <a href="{% url 'download_pdf' id=project.id %}">other</a>]&nbsp;</span>
+      </p>
+      <div class="tags is-inline-block">
+        <span class="tag is-small is-link tooltip is-tooltip-top" data-tooltip="Computer Vision and Pattern Recognition">cs.CV</span>
+        </div>
+      
+    </div>
+    
+    <p class="title is-5 mathjax">
+      
+      {{project.title}}
+      
+    </p>
+    <p class="authors">
+      <span class="has-text-black-bis has-text-weight-semibold">Authors:</span>
+      
+      {% for author in project.authors.all %}
+      {{ author.name }},
+      {{ author.email }}
+      {% endfor %}
+      
+    </p>
+    
+    <p class="abstract mathjax">
+      <span class="search-hit">Abstract</span>:
+      <span class="abstract-short has-text-grey-dark mathjax" id="{{ project.id }}-abstract-short" style="display: inline;">
+        …Daha kısa abstract…
+        <a class="is-size-7" style="white-space: nowrap;" onclick="document.getElementById('{{ project.id }}-abstract-full').style.display = 'inline'; document.getElementById('{{ project.id }}-abstract-short').style.display = 'none';">▽ More</a>
+      </span>
+      <span class="abstract-full has-text-grey-dark mathjax" id="{{ project.id }}-abstract-full" style="display: none;">
+        {% with project.abstract|split:" " as words %}
+          {% for word in words %}
+            {% if word == search_project %}
+            <span class="search-hit mathjax">{{ word }}</span>
+            {% else %}
+              {{ word }}
+            {% endif %}
+          {% endfor %}
+        {% endwith %}
+        <a class="is-size-7" style="white-space: nowrap;" onclick="document.getElementById('{{ project.id }}-abstract-full').style.display = 'none'; document.getElementById('{{ project.id }}-abstract-short').style.display = 'inline';">△ Less</a>
+      </span>
+    </p>
+    
+    <p class="stage"><span>Stage:</span> {{ project.current_stage.stages }}.
+  
+    </p>
+  
+    <p class="language"><span>Language:</span> {{ project.language.languages }}.
+  
+    </p>
+  
+    <p class="branches"><span>Branches:</span>
+      {% for branch in project.branches.all %}
+      {{ branch.branches }},
+      {% endfor %}.
+      
+    </p>
+  
+    <p class="is-size-7"><span class="has-text-black-bis has-text-weight-semibold">Submitted</span> {{project.pub_date}}; 
+      <span class="has-text-black-bis has-text-weight-semibold">originally announced**</span> May 2021**.
+      
+    </p>
+    
+    <p class="comments is-size-7">
+      <span class="has-text-black-bis has-text-weight-semibold">Comments:</span>
+      <span class="has-text-grey-dark mathjax">n pages, m figures and k tables; project page: http://path/to/projectpage</span>
+    </p>
+    
+  
+    
+  
+    
+  </li>
+  {% endfor %}
+</ol>
+
+{% for project in projects %}
+<h1>{{forloop.counter}}. {{project.title}}</h1>
+<p>Language:
+  {{ project.language.languages }}
+</p>
+<p>Date Created:
+  {{project.pub_date}}
+</p>
+<p>Author:
+  {% for author in project.authors.all %}
+    <li>{{ author.name }}</li>
+    <li>{{ author.email }}</li>
+  {% endfor %}
+</p>
+<p>Branches:
+  {% for branch in project.branches.all %}
+    <li>{{ branch.branches }}</li>
+  {% endfor %}
+</p>
+<p>Stage:
+  {{ project.current_stage.stages }}
+</p>
+k-id:{{ project.id }}
+
+<p>Abstract:
+  {{ project.abstract }}
+</p>
+{{ project.document}}
+{% endfor %}
 {% endblock %}

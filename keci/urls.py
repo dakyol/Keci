@@ -1,3 +1,4 @@
+from os import name
 from django.urls import path
 from . import views
 
@@ -8,4 +9,6 @@ urlpatterns = [
     path('search/advanced/', views.keci_advanced_search_view, name='keci_advanced_search'),
     path('project/', views.project_view, name='project'),
     path('help/', views.help_view, name='help'),
+    path('pdf/<uuid:id>', views.download_pdf, name='download_pdf'),
+    path('project/<uuid:id>', views.project_view, name='project'),
 ]

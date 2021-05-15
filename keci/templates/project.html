@@ -3,4 +3,42 @@
   <title>Proje ismi belki</title>
 {% endblock %}
 {% block content %}
+
+<h1>{{project.title}}</h1>
+<p>Language:
+  {{ project.language.languages }}
+</p>
+<p>Date Created:
+  {{project.pub_date}}
+</p>
+<p>Author:
+  {% for author in project.authors.all %}
+    <li>{{ author.name }}</li>
+    <li>{{ author.email }}</li>
+  {% endfor %}
+</p>
+<p>Branches:
+  {% for branch in project.branches.all %}
+    <li>{{ branch.branches }}</li>
+  {% endfor %}
+</p>
+<p>Stage:
+  {{ project.current_stage.stages }}
+</p>
+k-id:{{ project.id }}
+
+<p>Abstract:
+  {{ project.abstract }}
+</p>
+{{ project.document}}
+
+{{ file_content }}
+
+<h1 class="MathJax-script">${x^2}$</h1>
+<p>
+  When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
+  \[x = {-b \pm \sqrt{b^2-4ac} \over 2a}.\]
+</p>
+
+
 {% endblock %}

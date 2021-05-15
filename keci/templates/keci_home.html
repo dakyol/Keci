@@ -3,4 +3,11 @@
   <title>Keçi</title>
 {% endblock %}
 {% block content %}
+<form action="{% url 'keci_home' %}" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form }}
+  <input type="submit" value="Upload">
+</form>
+{{ form.title.value }}
+{{ document_data }}
 {% endblock %}
