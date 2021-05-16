@@ -50,13 +50,29 @@ def new_project_view(request):
 
 def keci_search_view(request):
     search_project = request.GET.get('search')
+    order = request.GET.get('size')
+    print(order)
 
+    query = request.GET.get('query')#id ile alıyoruz
+    print(query)
+
+    size = request.GET.get('size')
+    print(size)
+    
     if search_project:
-        projects = Project.objects.filter(Q(title__icontains=search_project))# & Q(abstract__icontains=search_post)
+        projects = Project.objects.filter(Q(title__icontains=search_project))# & Q(abstract__icontains=search_project)
     else:
         projects = Project.objects.all().order_by("-pub_date")
 
-    context = {'projects':projects, 'search_project':search_project}
+    if query:
+        projectss = Project.objects.all().order_by("-pub_date")
+    else:
+        projectss = Project.objects.all().order_by("-pub_date")
+
+    if query ==None:
+        query = ""
+
+    context = {'projects':projects, 'search_project':search_project, 'projectss':projectss, 'query_term':query, 'size_term':size}
     return render(request, 'keci_search.html', context=context)
 
 def keci_advanced_search_view(request):
