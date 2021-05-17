@@ -1,8 +1,10 @@
 import re
 import mimetypes
+from django.core import paginator
 
 from django.shortcuts import render, reverse, redirect, HttpResponse, get_object_or_404
 from django.db.models import Q
+from django.core.paginator import Paginator
 
 from keci.models import Project
 from keci.forms import ProjectForm, UploadFileForm
@@ -62,14 +64,24 @@ def keci_search_view(request):
         size = 25
 
     if query:
-        projects = Project.objects.filter(Q(title__icontains=query)).order_by(order)[:int(size)]
+        projects = Project.objects.filter(Q(title__icontains=query)).order_by(order)
     else:
-        projects = Project.objects.all().order_by("-pub_date")[:25]
+        projects = Project.objects.all().order_by("-pub_date")
 
     #if search_project:
     #    projects = Project.objects.filter(Q(title__icontains=search_project))# & Q(abstract__icontains=search_project)
     #else:
     #    projects = Project.objects.all().order_by("-pub_date")
+
+    size = 1
+
+    paginator = Paginator(projects, size)
+
+    page = request.GET.get('page')
+    
+    projects = paginator.get_page(page)
+
+    print(projects.paginator.num_pages)
 
     if query ==None:
         query = ""

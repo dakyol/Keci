@@ -148,3 +148,7 @@ db.sqlite3
 # .vscode
 
 .vscode
+
+#local media files
+
+media/documents/deneme/

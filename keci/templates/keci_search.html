@@ -80,6 +80,47 @@ Bu aşağıdaki navbar için
     </div>
   </div>
   
+
+  {% if projects.paginator.num_pages > 1 and projects.paginator.num_pages < 6 %}
+
+    <ul class="pagination-list">
+      {% for num in projects.paginator.page_range %}
+        {% if num == projects.number %}
+          <li><a class="page-button selected" href="?page={{sdsd}}"></a></li>
+        {% else %}
+          <li><a class="page-button" href="?page={{ndsds}}"></a></li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+
+  {% endif %}
+
+  {% if projects.paginator.num_pages > 5 %}
+
+    {% if projects.number > 3 %}
+
+      <ul class="pagination-list">
+        <li><a class="page-button" href="?page=1">1</a></li>...
+        {% if projects.has_previous %}<li><a class="page-button" href="?page={{ projects.previous_page_number }}">{{ projects.previous_page_number }}</a></li>{% endif %}
+        <li><a class="page-button selected" href="?page={{ projects.number }}"></a>{{ projects.number }}</li>
+        {% if projects.has_next %}<li><a class="page-button" href="?page={{ projects.next_page_number }}">{{ projects.next_page_number }}</a></li>{% endif %}
+      </ul>
+
+    {% else %}
+
+      {% for i in '12345'|make_list %}
+        {% if i == projects.number %}
+          <li><a class="page-button selected" href="?page={{i}}">{{i}}</a></li>
+        {% else %}
+          <li><a class="page-button" href="?page={{i}}">{{i}}</a></li>
+        {% endif %}
+      {% endfor %}
+
+    {% endif %}
+
+  {% endif %}
+
+
   <ol class="project-list breathe-horizontal" start="1">
     {% for project in projects %}
     <li class="keci-result">
