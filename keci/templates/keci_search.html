@@ -79,46 +79,59 @@ Bu aşağıdaki navbar için
       </form>
     </div>
   </div>
-  
 
-  {% if projects.paginator.num_pages > 1 and projects.paginator.num_pages < 6 %}
+  <nav class="pagination">
 
-    <ul class="pagination-list">
-      {% for num in projects.paginator.page_range %}
-        {% if num == projects.number %}
-          <li><a class="page-button selected" href="?page={{sdsd}}"></a></li>
-        {% else %}
-          <li><a class="page-button" href="?page={{ndsds}}"></a></li>
-        {% endif %}
-      {% endfor %}
-    </ul>
+    {% if projects.has_previous %}
+    <a href="?page={{ projects.previous_page_number }}">Previous</a>
+    {% endif %}
 
-  {% endif %}
-
-  {% if projects.paginator.num_pages > 5 %}
-
-    {% if projects.number > 3 %}
+    {% if projects.paginator.num_pages > 1 and projects.paginator.num_pages < 6 %}
 
       <ul class="pagination-list">
-        <li><a class="page-button" href="?page=1">1</a></li>...
-        {% if projects.has_previous %}<li><a class="page-button" href="?page={{ projects.previous_page_number }}">{{ projects.previous_page_number }}</a></li>{% endif %}
-        <li><a class="page-button selected" href="?page={{ projects.number }}"></a>{{ projects.number }}</li>
-        {% if projects.has_next %}<li><a class="page-button" href="?page={{ projects.next_page_number }}">{{ projects.next_page_number }}</a></li>{% endif %}
+        {% for num in projects.paginator.page_range %}
+          {% if num == projects.number %}
+            <li><a class="pagination-link is-current" href="?page={{num}}"></a></li>
+          {% else %}
+            <li><a class="pagination-link" href="?page={{num}}"></a></li>
+          {% endif %}
+        {% endfor %}
       </ul>
-
-    {% else %}
-
-      {% for i in '12345'|make_list %}
-        {% if i == projects.number %}
-          <li><a class="page-button selected" href="?page={{i}}">{{i}}</a></li>
-        {% else %}
-          <li><a class="page-button" href="?page={{i}}">{{i}}</a></li>
-        {% endif %}
-      {% endfor %}
 
     {% endif %}
 
-  {% endif %}
+    {% if projects.paginator.num_pages > 5 %}
+
+      <ul class="pagination-list">
+        {% if projects.number > 3 %}
+
+          <li><a class="pagination-link" href="?page=1">1</a></li>...
+          {% if projects.has_previous %}<li><a class="pagination-link" href="?page={{ projects.previous_page_number }}">{{ projects.previous_page_number }}</a></li>{% endif %}
+          <li><a class="pagination-link is-current" href="?page={{ projects.number }}"></a>{{ projects.number }}</li>
+          {% if projects.has_next %}<li><a class="pagination-link" href="?page={{ projects.next_page_number }}">{{ projects.next_page_number }}</a></li>{% endif %}
+          
+        {% else %}
+
+          {% for i in '12345'|make_list %}
+            {% if i == projects.number %}
+              <li><a class="pagination-link is-current" href="?page={{i}}">{{i}}</a></li>
+            {% else %}
+              <li><a class="pagination-link" href="?page={{i}}">{{i}}</a></li>
+            {% endif %}
+          {% endfor %}
+
+        {% endif %}
+      </ul>
+
+    {% endif %}
+
+    {% if projects.has_next %}
+      <a href="?page={{ projects.next_page_number }}">Next</a>
+    {% endif %}
+
+  </nav>
+
+
 
 
   <ol class="project-list breathe-horizontal" start="1">

@@ -78,10 +78,13 @@ def keci_search_view(request):
     paginator = Paginator(projects, size)
 
     page = request.GET.get('page')
+
+    if page == None:
+        page = 1
     
     projects = paginator.get_page(page)
 
-    print(projects.paginator.num_pages)
+    print(type(projects.number))
 
     if query ==None:
         query = ""
