@@ -1,3 +1,22 @@
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Open Sans Light'), local('OpenSans-Light'), url(https://fonts.gstatic.com/s/opensans/v13/DXI1ORHCpsQm3Vp6mXoaTXhCUOGz7vYGh680lGh-uXM.woff) format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/opensans/v13/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(https://fonts.gstatic.com/s/opensans/v13/MTP_ySUJH_bn48VBG8sNSnhCUOGz7vYGh680lGh-uXM.woff) format('woff');
+}
+ 
  /* Add a black background color to the top navigation */
 
  .topnav {
@@ -66,16 +85,17 @@
       text-align: left;
     }
   }
+
+
   body {
       height: 100%;
-      font-family: "Computer Modern", sans-serif;
+      font-family: 'Open Sans', 'Computer Modern', sans-serif;
       background-color: rgb(255, 255, 255);
-      
   }
   
-  body {font-family: Arial, Helvetica, sans-serif;}
+  body {font-family: 'Open Sans', Arial, Helvetica, sans-serif;}
   * {box-sizing: border-box;}
-  
+  /*
   .search_topnav {
     display: grid;
     grid-auto-flow: column;
@@ -106,9 +126,9 @@
     margin-right: 460px;
     margin-top: -25px;
   }
+  */
   
-  
-  @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,700);
+
   
   body {
     font-family: 'Open Sans';
@@ -178,63 +198,44 @@
     margin-right: 140px;
   }
 
-  
-
-  /*****************************/
-  /* Pagination */
-  /*
-  .pagination {
-    align-items: center;
-    display: flex;
+  .form-inline {
+    display: grid;
+    grid-auto-flow: column;
+    float: right;
+    margin-right: 75px;
+    margin-top: -40px;
+    line-height: 0.5em;
     font-size: 12px;
-    line-height: 18px;
-    justify-content: space-between;
-    text-align: center;
-    margin-bottom: 28px;
-    margin-top: 28px;
-    margin-right: 140px;
-    margin-left: 140px;
-  }
-
-  .pagination-list {
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-wrap: wrap;
-    list-style-position: outside;
-    order: 2;
-    list-style-type: none;
-    list-style-image: none;
-  }
-
-  .pagination-list li {
-    float: left;
-  }
-
-  .pagination-link {
-    align-items: center;
-    appearance: none;
-    list-style-image: none;
+    width: auto;
+}
+  .btn {
+    background-color: #711111;
+    color: white;
+    border: none;
     border-radius: 4px;
-    border-style: solid;
-    border-width: 1px;
-    border-image-outset: 0;
-    display: inline-flex;
-    justify-content: center;
-    list-style-image: none;
-    list-style-type: none;
-    list-style-position: outside;
-    position: relative;
-    vertical-align: top;
-    margin: 5px;
-    padding-right: 9px;
-    padding-left: 9px;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    text-align: center;
+    line-height: 6px;
+    font-size: 12px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+  }
+  .btn:hover {
+    background-color: rgb(184, 88, 88);
+  }
+  .form-control, .field, .btn {
+    height: 27px;
+  }
+  .form-control {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+  #field {
+    border:0px;
+    outline:none;
+    width: 90px;
   }
 
-  .is-current {
-    background-color: rgb(184, 88, 88);
-    /* background-color: rgb(8, 110, 170);
-    border-color: rgb(8, 109, 177);
+  p {
+    font-family: "Open Sans";
   }

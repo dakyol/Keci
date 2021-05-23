@@ -9,12 +9,6 @@
 {% endblock %}
 {% block content %}
 <h1>Deneme</h1>
-Bu aşağıdaki navbar için
-<form class="form-inline my-2 my-lg-0" action="{% url 'keci_search' %}">
-  <input class="form-control mr-sm-2" type="search"   placeholder="Arama terimleri" aria-label="Search" name="search">
-  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Ara</button>
-</form>
-{{ query_term }}
 <div class="content">
 
   <form method="GET" action="{% url 'keci_search' %}" aria-role="search">
@@ -28,6 +22,24 @@ Bu aşağıdaki navbar için
           <input class="input is-medium" id="query" name="query" placeholder="Search term..." type="text" value="{{ query_term }}">
         
         
+      </div>
+
+      <div class="select control is-medium">
+        <label class="is-hidden" for="searchtype">Field</label>
+        <select class="is-medium" id="searchtype" name="searchtype">
+          <option selected="" value="all">All fields</option>
+          <option value="title">Title</option>
+          <option value="author">Author(s)</option>
+          <option value="abstract">Abstract</option>
+          <option value="comments">Comments</option>
+          <option value="paper_id">mk identifier</option>
+          <option value="doi">DOI</option>
+          <option value="orcid">ORCID</option>
+          <option value="license">License (URI)</option>
+          <option value="author_id">mk author ID</option>
+          <option value="help">Help pages</option>
+          <option value="full_text">Full text</option>
+        </select>
       </div>
 
       <div class="control">
@@ -50,6 +62,20 @@ Bu aşağıdaki navbar için
       <form method="GET" action="{% url 'keci_search' %}">
         <div class="" style="display: none;">
           <input type="text" id="query" name="query" value="{{ query_term }}">
+          <select id="searchtype" name="searchtype">
+            <option selected="" value="all">All fields</option>
+            <option value="title">Title</option>
+            <option value="author">Author(s)</option>
+            <option value="abstract">Abstract</option>
+            <option value="comments">Comments</option>
+            <option value="paper_id">mk identifier</option>
+            <option value="doi">DOI</option>
+            <option value="orcid">ORCID</option>
+            <option value="license">License (URI)</option>
+            <option value="author_id">mk author ID</option>
+            <option value="help">Help pages</option>
+            <option value="full_text">Full text</option>
+          </select>
         </div>
         <div class="box">
           <div class="">
@@ -91,9 +117,9 @@ Bu aşağıdaki navbar için
       <ul class="pagination-list">
         {% for num in projects.paginator.page_range %}
           {% if num == projects.number %}
-            <li><a class="pagination-link is-current" href="?page={{num}}"></a></li>
+            <li><a class="pagination-link is-current" href="{{ request.get_full_path }}&page={{num}}">{{num}}</a></li>
           {% else %}
-            <li><a class="pagination-link" href="?page={{num}}"></a></li>
+            <li><a class="pagination-link" href="{{ request.get_full_path }}&page={{num}}">{{num}}</a></li>
           {% endif %}
         {% endfor %}
       </ul>
@@ -215,35 +241,4 @@ Bu aşağıdaki navbar için
     {% endfor %}
   </ol>
 </div>
-
-
-{% for project in projects %}
-<h1>{{forloop.counter}}. {{project.title}}</h1>
-<p>Language:
-  {{ project.language.languages }}
-</p>
-<p>Date Created:
-  {{project.pub_date}}
-</p>
-<p>Author:
-  {% for author in project.authors.all %}
-    <li>{{ author.name }}</li>
-    <li>{{ author.email }}</li>
-  {% endfor %}
-</p>
-<p>Branches:
-  {% for branch in project.branches.all %}
-    <li>{{ branch.branches }}</li>
-  {% endfor %}
-</p>
-<p>Stage:
-  {{ project.current_stage.stages }}
-</p>
-k-id:{{ project.id }}
-
-<p>Abstract:
-  {{ project.abstract }}
-</p>
-{{ project.document}}
-{% endfor %}
 {% endblock %}
