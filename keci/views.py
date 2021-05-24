@@ -1,6 +1,7 @@
 import re
 import mimetypes
 from django.core import paginator
+from django.forms.forms import Form
 
 from django.shortcuts import render, reverse, redirect, HttpResponse, get_object_or_404
 from django.utils.translation import templatize
@@ -8,8 +9,10 @@ from django.views.generic.edit import CreateView
 from django.db.models import Q
 from django.core.paginator import Paginator
 
+from django.contrib.auth import login, authenticate
+
 from keci.models import Project, Author
-from keci.forms import ProjectForm, UploadFileForm
+from keci.forms import ProjectForm, UploadFileForm, RegisterForm
 # Create your views here.
 
 def keci_home_view(request):
@@ -115,3 +118,14 @@ def download_pdf(request, id):
     return response
     #context = {}
     #return render(request, 'help.html', context=context)
+
+def register_view(response):
+    form = RegisterForm()
+    if response.method == 'POST':
+        form = RegisterForm(response.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('keci_home')
+    context = {'form':form}
+
+    return render(response, 'register.html', context=context)

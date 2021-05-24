@@ -1,0 +1,15 @@
+{% extends "index.html" %}
+{% block title %}
+  <title>Register</title>
+{% endblock %}
+{% block head-js %}
+
+{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+<form method="POST" class="registration-form">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit">Register</button>
+</form>
+{% endblock %}

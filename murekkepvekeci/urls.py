@@ -22,9 +22,13 @@ from django.views.generic import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
 
+from keci import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('register/', views.register_view, name="register"),
     path('keci/', include('keci.urls')),
+    path('', include('django.contrib.auth.urls')),
     path('keci/', RedirectView.as_view(url='keci/', permanent=True)),
 ]
 

@@ -267,3 +267,26 @@
     color: rgb(255, 255, 255);
   }
 
+  .registration-form {
+    width: 40%;
+    margin: auto;
+  }
+
+  @media screen and (max-width: 1600px) {
+    .registration-form {
+      width: 50%;
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+    .registration-form {
+      width: 60%;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    .registration-form {
+      width: 70%;
+    }
+  }
+
