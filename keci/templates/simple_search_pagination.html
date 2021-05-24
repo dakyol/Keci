@@ -1,0 +1,50 @@
+<nav class="pagination">
+
+  {% if projects.has_previous %}
+    <a class="previous" href="?page={{ projects.previous_page_number }}">Previous</a>
+  {% endif %}
+
+  {% if projects.paginator.num_pages > 1 and projects.paginator.num_pages < 6 %}
+
+    <ul class="pagination-list">
+      {% for num in projects.paginator.page_range %}
+        {% if num == projects.number %}
+          <li><a class="pagination-link is-current" href="{{ request.get_full_path }}&page={{num}}">{{num}}</a></li>
+        {% else %}
+          <li><a class="pagination-link" href="{{ request.get_full_path }}&page={{num}}">{{num}}</a></li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+
+  {% endif %}
+
+  {% if projects.paginator.num_pages > 5 %}
+
+    <ul class="pagination-list">
+      {% if projects.number > 3 %}
+
+        <li><a class="pagination-link" href="?page=1">1</a></li>...
+        {% if projects.has_previous %}<li><a class="pagination-link" href="?page={{ projects.previous_page_number }}">{{ projects.previous_page_number }}</a></li>{% endif %}
+        <li><a class="pagination-link is-current" href="?page={{ projects.number }}">{{ projects.number }}</a></li>
+        {% if projects.has_next %}<li><a class="pagination-link" href="?page={{ projects.next_page_number }}">{{ projects.next_page_number }}</a></li>{% endif %}
+          
+      {% else %}
+
+        {% for i in '12345'|make_list %}
+          {% if i == projects.number|slugify %}
+            <li><a class="pagination-link is-current" href="?page={{i}}">{{i}}</a></li>
+          {% else %}
+            <li><a class="pagination-link" href="?page={{i}}">{{i}}</a></li>
+          {% endif %}
+        {% endfor %}
+
+      {% endif %}
+    </ul>
+
+  {% endif %}
+
+  {% if projects.has_next %}
+    <a class="next" href="?page={{ projects.next_page_number }}">Next</a>
+  {% endif %}
+
+</nav>

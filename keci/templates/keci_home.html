@@ -3,6 +3,8 @@
   <title>Keçi</title>
 {% endblock %}
 {% block content %}
+<h1>Yeni Proje İçin</h1>
+<a href="{% url 'new_project' %}">Buraya basarak gidebilirsiniz</a>
 <form action="{% url 'keci_home' %}" method="post" enctype="multipart/form-data">
   {% csrf_token %}
   {{ form }}

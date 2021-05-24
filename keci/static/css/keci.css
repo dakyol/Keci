@@ -86,15 +86,12 @@
     }
   }
 
-
   body {
       height: 100%;
-      font-family: 'Open Sans', 'Computer Modern', sans-serif;
+      font-family: 'Open Sans', 'Computer Modern', sans-serif, Arial, Helvetica;
       background-color: rgb(255, 255, 255);
   }
   
-  body {font-family: 'Open Sans', Arial, Helvetica, sans-serif;}
-  * {box-sizing: border-box;}
   /*
   .search_topnav {
     display: grid;
@@ -127,13 +124,7 @@
     margin-top: -25px;
   }
   */
-  
 
-  
-  body {
-    font-family: 'Open Sans';
-  }
-  
   .project-list{
     width: 1000px;
     margin: auto;
@@ -198,6 +189,8 @@
     margin-right: 140px;
   }
 
+/* navbar searchbox */
+
   .form-inline {
     display: grid;
     grid-auto-flow: column;
@@ -239,3 +232,38 @@
   p {
     font-family: "Open Sans";
   }
+
+  nav.pagination {
+    display: flex;
+    /*width: fit-content;*/
+    width: 1000px;
+    margin: auto;
+    /*justify-content: center; bunun içine bir div koyup bunu ortalayıp onu bunusoluna çekebilriz */
+  }
+
+  .pagination-list {
+    display: flex;
+  }
+
+  .pagination-list li {
+    list-style-type: none;
+    margin: 10px;
+  }
+
+  .pagination-link {
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+  }
+
+  .pagination-link.is-current {
+    background-color: rgb(0, 255, 13);
+    border-color: rgb(0, 255, 13);
+    color: rgb(255, 255, 255);
+  }
+
