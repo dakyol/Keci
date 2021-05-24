@@ -1,4 +1,5 @@
 from django.db import models
+from django.shortcuts import reverse
 
 import datetime
 import uuid
@@ -45,3 +46,6 @@ class Project(models.Model):
     
     def __str__(self):
         return(self.title)
+
+    def get_absolute_url(self):
+        return reverse('help')

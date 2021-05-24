@@ -2,16 +2,30 @@
 {% block title %}
   <title>Yeni Proje</title>
 {% endblock %}
+{% block head-js %}
+<script>
+    window.onload = function formStyle() {
+        document.getElementById('id_abstract').setAttribute("class","project-form");
+        document.getElementById('id_title').placeholder = "Title of My Project";
+        //document.getElementById('id_abstract').textContent += "pampam"
+        document.getElementById('id_abstract').value = "";
+    }
+
+</script>
+<style>
+    #id_abstract {
+        max-width: 300px;
+    }
+</style>
+{% endblock %}
 {% block content %}
 
-rr
 <form action="{% url 'new_project' %}" method="post" enctype="multipart/form-data">
   {% csrf_token %}
-  {{ form }}
+    {{form}}
   <input type="submit" value="Submit">
 </form>
-aa
-{{ file }}
-aa
+
+<p class="bu-bir-class" id="bu-bir-id">brrrrrrrrrrrr</p>
 
 {% endblock %}

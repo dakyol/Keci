@@ -3,10 +3,12 @@ import mimetypes
 from django.core import paginator
 
 from django.shortcuts import render, reverse, redirect, HttpResponse, get_object_or_404
+from django.utils.translation import templatize
+from django.views.generic.edit import CreateView
 from django.db.models import Q
 from django.core.paginator import Paginator
 
-from keci.models import Project
+from keci.models import Project, Author
 from keci.forms import ProjectForm, UploadFileForm
 # Create your views here.
 
@@ -39,16 +41,10 @@ def keci_home_view(request):
     context = {'form':form, 'document_data':document_data}
     return render(request, 'keci_home.html', context=context)
 
-def new_project_view(request):
-    form = ProjectForm()
-    file = "asasasas"
-
-    if request.method=='POST':
-        form = ProjectForm(request.POST, request.FILES)
-        file = request.POST.get('document')
-        print(file==None)
-    context = {'form':form, 'file':file}
-    return render(request, 'new_project.html', context=context)
+class new_project_view(CreateView):
+    model = Project
+    fields = ['title','abstract','language','current_stage','branches','authors','document']
+    template_name = 'new_project.html'
 
 def keci_search_view(request):
     search_project = request.GET.get('search')
