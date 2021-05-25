@@ -43,16 +43,7 @@ def keci_home_view(request):
 
             document_data.close()
     context = {'form':form, 'document_data':document_data}
-    return render(request, 'keci_home.html', context=context)
-
-class new_project_view(LoginRequiredMixin, CreateView):
-    model = Project
-    fields = ['title','abstract','language','current_stage','branches','authors','document']
-    template_name = 'new_project.html'
-    
-    def form_valid(self, form):
-        form.instance.created_by = self.request.user
-        return super().form_valid(form)
+    return render(request, 'keci/keci_home.html', context=context)
 
 def keci_search_view(request):
     search_project = request.GET.get('search')
@@ -92,11 +83,20 @@ def keci_search_view(request):
         query = ""
 
     context = {'projects':projects, 'query_term':query, 'size_term':size, 'order_term':order}
-    return render(request, 'keci_search.html', context=context)
+    return render(request, 'keci/keci_search.html', context=context)
 
 def keci_advanced_search_view(request):
     context = {}
-    return render(request, 'keci_advanced_search.html', context=context)
+    return render(request, 'keci/keci_advanced_search.html', context=context)
+
+class new_project_view(LoginRequiredMixin, CreateView):
+    model = Project
+    fields = ['title','abstract','language','current_stage','branches','authors','document']
+    template_name = 'keci/new_project.html'
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super().form_valid(form)
 
 def project_view(request, id):
     project = get_object_or_404(Project, id=id)
@@ -105,11 +105,22 @@ def project_view(request, id):
     file_content = f.read()
     f.close()
     context = {'project':project, 'file_content':file_content}
-    return render(request, 'project.html', context=context)
+    return render(request, 'keci/project.html', context=context)
+
+def register_view(response):
+    form = RegisterForm()
+    if response.method == 'POST':
+        form = RegisterForm(response.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('keci_home')
+    context = {'form':form}
+
+    return render(response, 'registration/register.html', context=context)
 
 def help_view(request):
     context = {}
-    return render(request, 'help.html', context=context)
+    return render(request, 'keci/help.html', context=context)
 
 def download_pdf(request, id):
     fl_path = 'media/documents/deneme/' + str(id) + '.txt'
@@ -123,14 +134,3 @@ def download_pdf(request, id):
     return response
     #context = {}
     #return render(request, 'help.html', context=context)
-
-def register_view(response):
-    form = RegisterForm()
-    if response.method == 'POST':
-        form = RegisterForm(response.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('keci_home')
-    context = {'form':form}
-
-    return render(response, 'register.html', context=context)

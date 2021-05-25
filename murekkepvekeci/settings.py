@@ -133,3 +133,13 @@ LOGIN_REDIRECT_URL = '/keci'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Gmail settings
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS=True
+SERVER_EMAIL ='murekkepvekeci@gmail.com'
+EMAIL_HOST_USER = 'murekkepvekeci@gmail.com'
+EMAIL_HOST_PASSWORD = 'melalosido2004atlas2004bonio'

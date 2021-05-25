@@ -145,7 +145,7 @@
         <span class="abstract-full has-text-grey-dark mathjax" id="{{ project.id }}-abstract-full" style="display: none;">
           {% with project.abstract|split:" " as words %}
             {% for word in words %}
-              {% if word == search_project %}
+              {% if word == query_term %}
               <span class="search-hit mathjax">{{ word }}</span>
               {% else %}
                 {{ word }}

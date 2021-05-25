@@ -17,8 +17,15 @@
   src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(https://fonts.gstatic.com/s/opensans/v13/MTP_ySUJH_bn48VBG8sNSnhCUOGz7vYGh680lGh-uXM.woff) format('woff');
 }
  
- /* Add a black background color to the top navigation */
+body {
+  height: 100%;
+  font-family: 'Open Sans', 'Computer Modern', sans-serif, Arial, Helvetica;
+  background-color: rgb(255, 255, 255);
+}
 
+/** navbar styling - index.html **/
+
+ /* Add a black background color to the top navigation */
  .topnav {
     top: 0;
     opacity: 1;
@@ -40,7 +47,6 @@
     text-decoration: none;
     font-size: 17px;
   }
-  
   
   /* Hide the link that should open and close the topnav on small screens */
   .topnav .icon {
@@ -86,110 +92,7 @@
     }
   }
 
-  body {
-      height: 100%;
-      font-family: 'Open Sans', 'Computer Modern', sans-serif, Arial, Helvetica;
-      background-color: rgb(255, 255, 255);
-  }
-  
-  /*
-  .search_topnav {
-    display: grid;
-    grid-auto-flow: column;
-    float: right;
-    margin-right: 75px;
-    margin-top: -40px;
-    line-height: 0.5em;
-    font-size: 12px;
-    height: 1%;
-    width: auto;
-  }
-  #keci_submit {
-    background-color: #711111;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  #keci_submit:hover {
-    background-color: rgb(184, 88, 88);
-  }
-  #searchbar {
-    width: 200px;
-  }
-  #advanced_search {
-    float: right;
-    margin-right: 460px;
-    margin-top: -25px;
-  }
-  */
-
-  .project-list{
-    width: 1000px;
-    margin: auto;
-  }
-  
-  .keci-result {
-    margin-bottom: 64px;
-  }
-  
-  .keci-result .list-title {
-    font-weight: 600;
-    font-size: 14.7px;
-  }
-  
-  .keci-result .title {
-    font-weight: 600;
-    font-size: 1.25em;
-  }
-  
-  .stage span, .language span, .branches span, .authors span, .abstract span.search-hit {
-    font-weight: 600;
-    font-size: 14px;
-  }
-
-  /**************************************************/
-  /* keci_search */
-
-  .box {
-    box-sizing: content-box;
-    align-items: center;
-    background-color: rgb(255, 255, 255);
-    border-bottom-left-radius: 2px;
-    border-bottom-right-radius: 2px;
-    border-top-left-radius: 2px;
-    border-top-right-radius: 2px;
-    box-shadow: rgba(10, 10, 10, 0.1) 0px 2px 3px, rgba(10, 10, 10, 0.1) 0px 0px 0px 1px;
-    color: rgb(51, 51, 51);
-    display: flex;
-    flex-basis: auto;
-    flex-grow: 0;
-    flex-shrink: 0;
-    flex-wrap: wrap;
-    font-family: "Open Sans", "Lucida Grande", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 400;
-    justify-content: flex-start;
-    line-height: 21px;
-    margin-bottom: -10.5px;
-    padding-top: 10.5px;
-    padding-bottom: 10.5px;
-    padding-right: 10.5px;
-    padding-left: 10.5px;
-    text-rendering: optimizeLegibility;
-  }
-
-  .level {
-    align-items: center;
-    box-sizing: content-box;
-    margin-bottom: 21px;
-    justify-content: space-between;
-    margin-left: 140px;
-    margin-right: 140px;
-  }
-
-/* navbar searchbox */
+  /** navbar searchbox **/
 
   .form-inline {
     display: grid;
@@ -229,9 +132,49 @@
     width: 90px;
   }
 
-  p {
-    font-family: "Open Sans";
+/** keci_search styling **/
+
+
+  /** result filter(?) **/
+
+  .box {
+    box-sizing: content-box;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    box-shadow: rgba(10, 10, 10, 0.1) 0px 2px 3px, rgba(10, 10, 10, 0.1) 0px 0px 0px 1px;
+    color: rgb(51, 51, 51);
+    display: flex;
+    flex-basis: auto;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    font-family: "Open Sans", "Lucida Grande", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    justify-content: flex-start;
+    line-height: 21px;
+    margin-bottom: -10.5px;
+    padding-top: 10.5px;
+    padding-bottom: 10.5px;
+    padding-right: 10.5px;
+    padding-left: 10.5px;
+    text-rendering: optimizeLegibility;
   }
+
+  .level {
+    align-items: center;
+    box-sizing: content-box;
+    margin-bottom: 21px;
+    justify-content: space-between;
+    margin-left: 140px;
+    margin-right: 140px;
+  }
+
+  /** pagination **/
 
   nav.pagination {
     display: flex;
@@ -266,6 +209,35 @@
     border-color: rgb(0, 255, 13);
     color: rgb(255, 255, 255);
   }
+
+    /** project list styling **/
+
+    .project-list{
+      width: 1000px;
+      margin: auto;
+    }
+    
+    .keci-result {
+      margin-bottom: 64px;
+    }
+    
+    .keci-result .list-title {
+      font-weight: 600;
+      font-size: 14.7px;
+    }
+    
+    .keci-result .title {
+      font-weight: 600;
+      font-size: 1.25em;
+    }
+    
+    .stage span, .language span, .branches span, .authors span, .abstract span.search-hit {
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+/** 'registration/' pages stylings **/
+
 
   .registration-form {
     width: 40%;
