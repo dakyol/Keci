@@ -18,14 +18,13 @@
     }
 </style>
 {% endblock %}
+{% load crispy_forms_tags %}
 {% block content %}
 
-<form action="{% url 'new_project' %}" method="post" enctype="multipart/form-data">
+<form class="registration-form" action="{% url 'new_project' %}" method="post" enctype="multipart/form-data">
   {% csrf_token %}
-    {{form}}
+    {{form|crispy}}
   <input type="submit" value="Submit">
 </form>
-
-<p class="bu-bir-class" id="bu-bir-id">brrrrrrrrrrrr</p>
 
 {% endblock %}

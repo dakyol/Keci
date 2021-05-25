@@ -235,6 +235,29 @@ body {
       font-size: 14px;
     }
 
+/** help page styling **/
+
+
+  .help {
+    width: 80%;
+    margin: auto;
+    margin-top: 48px;
+  }
+
+  .help h1 {
+    margin-bottom: 48px;
+    font-size: 40px;
+  }
+
+  .help ul li {
+    margin-bottom: 2px;
+  }
+
+  .help p {
+    margin-top: 40px;
+  }
+
+
 /** 'registration/' pages stylings **/
 
   /** forms **/
