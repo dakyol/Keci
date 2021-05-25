@@ -22,12 +22,15 @@ from django.views.generic import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
 
+from django.contrib.auth.views import LogoutView, LoginView
+
 from keci import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', views.register_view, name="register"),
     path('keci/', include('keci.urls')),
+    path('logout/', LogoutView.as_view(template_name='registration/logout.html'), name="logout"), #aslında burada herhangi bir template sağlamamıza gerek yok -hatta sağlamamalıyız ki bu url'e gidildiğinde herhangi bir sayfa açılmasın- çünkü 'logout' yapanları doğrudan 'keci_home'a yönlendiriyoruz.
     path('', include('django.contrib.auth.urls')),
     path('keci/', RedirectView.as_view(url='keci/', permanent=True)),
 ]

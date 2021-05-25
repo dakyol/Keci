@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+
 from django.shortcuts import reverse
 
 import datetime
@@ -41,6 +43,7 @@ class Project(models.Model):
     current_stage = models.ForeignKey(Stage, null=True, on_delete=models.CASCADE, related_name='current_stage')
     branches = models.ManyToManyField(Branch)
     authors = models.ManyToManyField(Author)
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
 
     document = models.FileField(upload_to='documents/deneme/', blank=True, null=True)
     

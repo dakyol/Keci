@@ -15,6 +15,7 @@
 
 {% if user.is_authenticated %}
   <p>You have already logged in.</p>
+  <a href="{% url 'logout' %}?next={% url 'keci_home' %}">Logout</a>
 {% else %}
   <p>Login<a href="{% url 'login' %}">Here</a></p>
 {% endif %}

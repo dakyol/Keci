@@ -10,6 +10,7 @@ from django.db.models import Q
 from django.core.paginator import Paginator
 
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from keci.models import Project, Author
 from keci.forms import ProjectForm, UploadFileForm, RegisterForm
@@ -44,10 +45,14 @@ def keci_home_view(request):
     context = {'form':form, 'document_data':document_data}
     return render(request, 'keci_home.html', context=context)
 
-class new_project_view(CreateView):
+class new_project_view(LoginRequiredMixin, CreateView):
     model = Project
     fields = ['title','abstract','language','current_stage','branches','authors','document']
     template_name = 'new_project.html'
+    
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super().form_valid(form)
 
 def keci_search_view(request):
     search_project = request.GET.get('search')
