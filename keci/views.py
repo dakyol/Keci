@@ -11,6 +11,7 @@ from django.core.paginator import Paginator
 
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 from keci.models import Project, Author
 from keci.forms import ProjectForm, UploadFileForm, RegisterForm
