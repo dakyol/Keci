@@ -134,7 +134,6 @@ body {
 
 /** keci_search styling **/
 
-
   /** result filter(?) **/
 
   .box {
@@ -238,6 +237,7 @@ body {
 
 /** 'registration/' pages stylings **/
 
+  /** forms **/
 
   .registration-form {
     width: 40%;
@@ -261,4 +261,21 @@ body {
       width: 70%;
     }
   }
+
+  /** success pages **/
+
+  .success-division {
+    width: 60%;
+    margin: auto;
+    margin-top: 48px;
+  }
+
+  .success-heading {
+    font-size: 64px;
+  }
+
+  .success-paragraph {
+    font-size: 32px;
+  }
+
 
