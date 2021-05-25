@@ -14,7 +14,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 
 from keci.models import Project, Author
-from keci.forms import ProjectForm, UploadFileForm, RegisterForm
+from keci.forms import ProjectForm, UploadFileForm
 # Create your views here.
 
 def keci_home_view(request):
@@ -107,17 +107,6 @@ def project_view(request, id):
     f.close()
     context = {'project':project, 'file_content':file_content}
     return render(request, 'keci/project.html', context=context)
-
-def register_view(response):
-    form = RegisterForm()
-    if response.method == 'POST':
-        form = RegisterForm(response.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('keci_home')
-    context = {'form':form}
-
-    return render(response, 'registration/register.html', context=context)
 
 def help_view(request):
     context = {}
