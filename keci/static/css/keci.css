@@ -134,6 +134,16 @@ body {
 
 /** keci_search styling **/
 
+  /** searchbar **/
+
+  .has-addons-tablet {
+
+  }
+
+  .control {
+    float: left;
+  }
+
   /** result filter(?) **/
 
   .box {
@@ -209,31 +219,31 @@ body {
     color: rgb(255, 255, 255);
   }
 
-    /** project list styling **/
+  /** project list styling **/
 
-    .project-list{
-      width: 1000px;
-      margin: auto;
-    }
+  .project-list{
+    width: 1000px;
+    margin: auto;
+  }
     
-    .keci-result {
-      margin-bottom: 64px;
-    }
+  .keci-result {
+    margin-bottom: 64px;
+  }
     
-    .keci-result .list-title {
-      font-weight: 600;
-      font-size: 14.7px;
-    }
+  .keci-result .list-title {
+    font-weight: 600;
+    font-size: 14.7px;
+  }
     
-    .keci-result .title {
-      font-weight: 600;
-      font-size: 1.25em;
-    }
+  .keci-result .title {
+    font-weight: 600;
+    font-size: 1.25em;
+  }
     
-    .stage span, .language span, .branches span, .authors span, .abstract span.search-hit {
-      font-weight: 600;
-      font-size: 14px;
-    }
+  .stage span, .language span, .branches span, .authors span, .abstract span.search-hit {
+    font-weight: 600;
+    font-size: 14px;
+  }
 
 /** help page styling **/
 

@@ -1,0 +1,77 @@
+footer {
+    background-color: rgb(242, 242, 242);
+    bottom: 0;
+}
+
+/** navbar **/
+
+.btn-red {
+    color: white;
+    background-color: rgb(113, 17, 17);
+}
+
+.btn-red:hover {
+    color: white;
+    background-color: rgb(68, 10, 10);
+}
+
+.custom-nav-div a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.custom-nav-div a:hover {
+    color: wheat;
+}
+
+.custom-nav-div p {
+    color: white;
+}
+
+#login-div a {
+    text-decoration: none;
+}
+
+/** 'registration/' pages stylings **/
+
+  /** forms **/
+
+  .registration-form {
+    width: 40%;
+    margin: auto;
+  }
+
+  @media screen and (max-width: 1600px) {
+    .registration-form {
+      width: 50%;
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+    .registration-form {
+      width: 60%;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    .registration-form {
+      width: 70%;
+    }
+  }
+
+  /** success pages **/
+
+  .success-division {
+    width: 60%;
+    margin: auto;
+    margin-top: 48px;
+  }
+
+  .success-heading {
+    font-size: 64px;
+  }
+
+  .success-paragraph {
+    font-size: 32px;
+  }

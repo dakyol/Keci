@@ -84,7 +84,7 @@ def keci_search_view(request):
         query = ""
 
     context = {'projects':projects, 'query_term':query, 'size_term':size, 'order_term':order}
-    return render(request, 'keci/keci_search.html', context=context)
+    return render(request, 'keci/feneme.html', context=context)
 
 def keci_advanced_search_view(request):
     context = {}
