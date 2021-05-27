@@ -52,7 +52,7 @@
     {% include 'pagination.html' %}
     <ol class="project-list breathe-horizontal" start="1">
         {% for project in projects %}
-        {% search_hit request 'query' project.abstract 'Abstract' %}
+        
         <li class="keci-result lh-sm">
           <div class="is-marginless m-0 p-0">
             <p class="list-title is-inline-block"><a href="{% url 'project' id=project.id %}">k-id:{{ project.id }}</a>
@@ -99,7 +99,7 @@
               {% endwith %}
               <a class="is-size-7" style="white-space: nowrap;" onclick="document.getElementById('{{ project.id }}-abstract-full').style.display = 'none'; document.getElementById('{{ project.id }}-abstract-short').style.display = 'inline';">△ Less</a>
             </span>
-            {% search_hit request 'query' project.abstract 'Abstract'%}
+          
           </p>
           
           <p class="stage my-1 py-1"><strong>Stage:</strong> {{ project.current_stage.stages }}.

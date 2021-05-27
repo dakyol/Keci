@@ -18,6 +18,10 @@ from keci.forms import ProjectForm, UploadFileForm
 # Create your views here.
 
 def keci_home_view(request):
+    context = {}
+    return render(request, 'keci/keci_home.html', context=context)
+
+#def keci_home_view(request):
     form = UploadFileForm()
     document_data = None
 
@@ -47,12 +51,10 @@ def keci_home_view(request):
     return render(request, 'keci/keci_home.html', context=context)
 
 def keci_search_view(request):
-    search_project = request.GET.get('search')
-
     query = request.GET.get('query')#id ile alıyoruz
+    field = request.GET.get('field')
     size = request.GET.get('size')
     order = request.GET.get('order')
-    
 
     if order == None:
         order = "-pub_date"
@@ -61,14 +63,19 @@ def keci_search_view(request):
         size = 25
 
     if query:
-        projects = Project.objects.filter(Q(title__icontains=query)).order_by(order)
+        if field == 'all':
+            projects = Project.objects.filter(Q(title__icontains=query)|Q(abstract__icontains=query)|Q(created_by__username__icontains=query)).order_by(order)
+        elif field == 'title':
+            projects = Project.objects.filter(Q(title__icontains=query)).order_by(order)
+        elif field == 'abstract':
+            projects = Project.objects.filter(Q(abstract__icontains=query)).order_by(order)
+        elif field == 'author':
+            projects = Project.objects.filter(Q(created_by__username__icontains=query)).order_by(order)
+        else:
+            projects = Project.objects.filter(Q(created_by__username__icontains=query)).order_by(order)
     else:
-        projects = Project.objects.all().order_by("-pub_date")
-
-    #if search_project:
-    #    projects = Project.objects.filter(Q(title__icontains=search_project))# & Q(abstract__icontains=search_project)
-    #else:
-    #    projects = Project.objects.all().order_by("-pub_date")
+        projects = Project.objects.all().order_by(order)
+        query = ""
 
     size = 1
 
@@ -80,9 +87,6 @@ def keci_search_view(request):
         page = 1
     
     projects = paginator.get_page(page)
-
-    if query ==None:
-        query = ""
 
     context = {'projects':projects, 'query_term':query, 'size_term':size, 'order_term':order}
     return render(request, 'keci/keci_search.html', context=context)
