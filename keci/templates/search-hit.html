@@ -1,0 +1,8 @@
+<span class="{{search_result}}">{{field}}:</span>
+{% for word in words %}
+    {% if word == field_query %}
+        <span class="search-hit" id="{{field_id}}">{{ word }}</span>
+    {% else %}
+        {{ word }}
+    {% endif %}
+{% endfor %}

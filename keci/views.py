@@ -52,6 +52,7 @@ def keci_search_view(request):
     query = request.GET.get('query')#id ile alıyoruz
     size = request.GET.get('size')
     order = request.GET.get('order')
+    
 
     if order == None:
         order = "-pub_date"
