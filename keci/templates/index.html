@@ -31,7 +31,7 @@
                 <a class="nav-link" href="#">Dökümanlar</a>
               </li>
             </ul>
-            <form class="d-flex input-group input-group-sm w-25" action="{% url 'keci_search' %}">
+            <form id="form_id" class="d-flex input-group input-group-sm w-25 me-5" action="{% url 'keci_search' %}">
               <input class="form-control w-25" type="search" placeholder="Arama terimleri" aria-label="Search" name="query">
               <select name="field" id="field" class="form-select">
                 <option value="all-fields">All fields</option>
@@ -40,15 +40,13 @@
                 <option value="author">Author</option>
               </select>
               <button class="btn btn-red" type="submit">Ara</button>
+              <p id="search-form-label"><a href="{% url 'help' %}">Help</a>|<a href="{% url 'keci_advanced_search' %}">Advanced Search</a></p>
             </form>
-            <div class="d-md-none d-lg-block custom-nav-div" style="top: 38px; right: 400px; position: absolute;">
-              <p><a href="{% url 'help' %}">Help</a> | <a href="{% url 'keci_advanced_search' %}">Advanced Search</a></p>
-            </div>
             <div class="d-lg-none custom-nav-div">
               <p><a href="{% url 'help' %}">Help</a> | <a href="{% url 'keci_advanced_search' %}">Advanced Search</a></p>
             </div>
-            <div id="login-div" style="float: right;">
-              <a id="id_login" href="{% url 'login' %}">Sign in</a> | <a id="id_register" href="{% url 'register' %}">Sign up</a>
+            <div class="" id="login-div" style="float: right;">
+              <a id="id_login" class="btn btn-primary btn-sm" href="{% url 'login' %}">Sign in</a> | <a id="id_register" class="btn btn-danger btn-sm" href="{% url 'register' %}">Sign up</a>
             </div>
           </div>
         </div>

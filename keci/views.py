@@ -113,9 +113,9 @@ def help_view(request):
     return render(request, 'keci/help.html', context=context)
 
 def download_pdf(request, id):
-    fl_path = 'media/documents/deneme/' + str(id) + '.txt'
+    fl_path = 'media/documents/deneme/' + str(id) + '.pdf'
     print(fl_path)
-    filename = str(id) + ".txt" #str(id)+'.pdf'
+    filename = str(id) + ".pdf" #str(id)+'.pdf'
 
     fl = open(fl_path, 'r')
     mime_type, _ = mimetypes.guess_type(fl_path)
@@ -123,4 +123,4 @@ def download_pdf(request, id):
     response['Content-Disposition'] = "attachment; filename=%s" % filename
     return response
     #context = {}
-    #return render(request, 'help.html', context=context)
+    #return render(request, '*.html', context=context)

@@ -33,6 +33,24 @@ footer {
     text-decoration: none;
 }
 
+#search-form-label {
+  position: absolute;
+  top: 30px;
+  left: 0px;
+  color: white;
+}
+
+#search-form-label a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  padding: 2px;
+}
+
+#search-form-label a:hover {
+  color: rgb(212,132,135);
+}
+
 /** 'registration/' pages stylings **/
 
   /** forms **/

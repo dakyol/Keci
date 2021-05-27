@@ -1,7 +1,5 @@
 {% extends "index.html" %}
-{% block title %}
-  <title>Register</title>
-{% endblock %}
+{% block title %}Register | Mürekkep ve Keçi{% endblock %}
 {% block head-js %}
 
 {% endblock %}
@@ -10,6 +8,6 @@
 <form method="POST" class="registration-form">
     {% csrf_token %}
     {{ form|crispy }}
-    <button type="submit">Register</button>
+    <button class="btn btn-outline-primary" type="submit">Register</button>
 </form>
 {% endblock %}
