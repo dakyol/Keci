@@ -1,7 +1,7 @@
 <form class="row d-flex justify-content-center" method="GET" action="{% url 'keci_search' %}">
     <div class="input-group input-group-lg col-md-6">
         <input id="query" name="query" type="text" class="form-control w-50" placeholder="Search terms..." value="{{ query_term }}">
-        <select id="searchtype" name="searchtype" class="form-select">
+        <select id="field" name="field" class="form-select">
             <option value="all" selected>All fields</option>
             <option value="title">Title</option>
             <option value="abstract">Abstract</option>

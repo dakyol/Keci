@@ -15,49 +15,54 @@ def url_replace(request, field, value):
     d[field] = value
     return d.urlencode()
 
-#@register.simple_tag
-def search_hit_class(request, field, field_name, text):
+@register.inclusion_tag('header-search-hit.html')
+def header_search_hit(request, field, text):
     d = request.GET.copy()
-    query = d[field]
-    if query in text:
-        field_class = "search-hit search-hit-"+field_name
+    query_term = d['query']
+    search_field = d['field']
+    if search_field == 'all':
+        search_field = field
+    if query_term == "":
+        isTextInclude = False
     else:
-        field_class = ""
-    return {
-
-    }
-
-
-#@register.inclusion_tag('search-hit.html')
-def search_hit(request, field, text, id):
-    d = request.GET.copy()
-    query = d[field]
-    words = text.split(" ")
-    return {
-        'field':field,
-        'query':query,
-        'words':words,
-        'id':id,
-    }
-
-#@register.inclusion_tag('search-hit.html')
-def search_hit(request, field_name, input, value):
-    d = request.GET.copy()
-    field_query = d[field_name]
-    if field_query in input:
-        search_result = "search-hit search-hit-"+field_name
+        isTextInclude = (query_term in text)
+    if (field == search_field) & isTextInclude:
+        class_tag = "search-hit"
     else:
-        search_result = ""
-    words = input.split(" ")
-    field_id = "field_id_sonra" #str(id)+"-abstract-full"
-    return {
-        'field':value,
-        'field_query':field_query,
-        'words':words,
-        'search_result':search_result,
-        'field_id':field_id,
-    }
-
-
-
+        class_tag = ""
     
+    field = field.capitalize()
+
+    return {
+        'class_tag':class_tag,
+        'field':field,
+    }
+
+@register.inclusion_tag('search-hit.html')
+def search_hit(request, field, text):
+    d = request.GET.copy()
+    query_term = d['query']
+    search_field = d['field']
+
+    if search_field == 'all':
+        search_field = field
+
+    if field == 'abstract-short':
+        text = text[0:400] + " ..."
+        text = text.split(" ")
+        return {
+            'query_term':query_term,
+            'text':text,
+        }
+    elif field == search_field:
+        text = text.split(" ")
+        return  {
+            'query_term':query_term,
+            'text':text,
+        }
+    else:
+        text = text.split(" ")
+        return {
+            'query_term':"",
+            'text':text,
+        } 

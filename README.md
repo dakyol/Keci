@@ -1,5 +1,9 @@
 Bu belge deneme yapmak amacıyla oluşturuldu!
 
+# Keci
+
+## Kullanım Talimatları
+
 Kendi bilgisayarınızda lokal olarak siteyi çalıştırabilmek için sırasıyla,
 
 1-Python 3.8.5 indirmeniz
@@ -67,3 +71,21 @@ Aşağıdaki komut ilr django sitenizi çalıştırabilirsiniz
     python manage.py runserver
 
 Not: karşınıza çıkan url'in sonuna /keci eklemeniz gerekiyor.
+
+Tehcnologies used:
+
+* Frontend: HTML5, CSS (Bootstrap5 and Custom CSS), JS
+* Backend: Django, PostgreSQL
+* Deployment: DigitalOcean
+
+## Detailed Explanation of Frontend Technologies
+
+
+
+## Detailed Explanation of Backend Technologies
+
+Pagination
+
+Download
+
+

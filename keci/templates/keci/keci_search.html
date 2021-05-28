@@ -66,7 +66,7 @@
           
           <p class="title is-5 mathjax my-1 py-1">
             
-            <strong> {{project.title}} </strong>
+            <strong> {% search_hit request 'title' project.title %} </strong>
             
             
           </p>
@@ -82,21 +82,13 @@
           </p>
           
           <p class="abstract mathjax my-1 py-1">
-            <span class="search-hit"><strong>Abstract:</strong></span>
+            {% header_search_hit request 'abstract' project.abstract %}
             <span class="abstract-short has-text-grey-dark mathjax" id="{{ project.id }}-abstract-short" style="display: inline;">
-              …Daha kısa abstract…
+              {% search_hit request 'abstract-short' project.abstract %}
               <a class="is-size-7" style="white-space: nowrap;" onclick="document.getElementById('{{ project.id }}-abstract-full').style.display = 'inline'; document.getElementById('{{ project.id }}-abstract-short').style.display = 'none';">▽ More</a>
             </span>
             <span class="abstract-full has-text-grey-dark mathjax" id="{{ project.id }}-abstract-full" style="display: none;">
-              {% with project.abstract|split:" " as words %}
-                {% for word in words %}
-                  {% if word == query_term %}
-                  <span class="search-hit mathjax"><strong>{{ word }}</strong></span>
-                  {% else %}
-                    {{ word }}
-                  {% endif %}
-                {% endfor %}
-              {% endwith %}
+              {% search_hit request 'abstract' project.abstract %}
               <a class="is-size-7" style="white-space: nowrap;" onclick="document.getElementById('{{ project.id }}-abstract-full').style.display = 'none'; document.getElementById('{{ project.id }}-abstract-short').style.display = 'inline';">△ Less</a>
             </span>
           
