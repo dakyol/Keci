@@ -2,6 +2,14 @@
 {% block title %}Keçi | Mürekkep ve Keçi{% endblock %}
 {% block content %}
 
+{% if user.is_authenticated %}
+<h1>Ola!</h1>
+{{user.get_username}}
+
+{% for project in projects %}
+{{ project }}
+{% endfor %}
+{% endif %}
 
 
 {% endblock %}

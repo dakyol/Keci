@@ -18,7 +18,16 @@ from keci.forms import ProjectForm, UploadFileForm
 # Create your views here.
 
 def keci_home_view(request):
-    context = {}
+    projects = ""
+
+    if request.user.is_authenticated:
+        projects = Project.objects.filter(created_by__username=request.user.username).order_by('-pub_date')
+        print(projects)
+        print(type(projects))
+    else:
+        print(False)
+
+    context = {'projects':projects}
     return render(request, 'keci/keci_home.html', context=context)
 
 #def keci_home_view(request):
