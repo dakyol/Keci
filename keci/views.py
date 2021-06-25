@@ -19,9 +19,10 @@ from keci.forms import ProjectForm, UploadFileForm
 
 def keci_home_view(request):
     projects = ""
-
+    print(request.user.is_authenticated)
     if request.user.is_authenticated:
         projects = Project.objects.filter(created_by__username=request.user.username).order_by('-pub_date')
+        #projects = Project.objects.all().order_by('-pub_date')
         print(projects)
         print(type(projects))
     else:
@@ -64,7 +65,7 @@ def keci_search_view(request):
     field = request.GET.get('field')
     size = request.GET.get('size')
     order = request.GET.get('order')
-
+    print(type(query))
     if order == None:
         order = "-pub_date"
 
@@ -115,7 +116,7 @@ class new_project_view(LoginRequiredMixin, CreateView):
 
 def project_view(request, id):
     project = get_object_or_404(Project, id=id)
-    fl_path = 'media/documents/deneme/' + str(id) + '.tex'
+    fl_path = 'media/documents/' + str(id) + '.tex'
     f = open(fl_path, 'r')
     file_content = f.read()
     f.close()
@@ -127,9 +128,9 @@ def help_view(request):
     return render(request, 'keci/help.html', context=context)
 
 def download_pdf(request, id):
-    fl_path = 'media/documents/deneme/' + str(id) + '.tex'
+    fl_path = 'media/documents/' + str(id) + '.tex'
     print(fl_path)
-    filename = str(id) + ".pdf" #str(id)+'.pdf'
+    filename = str(id) + ".tex" #str(id)+'.pdf'
 
     fl = open(fl_path, 'r')
     mime_type, _ = mimetypes.guess_type(fl_path)

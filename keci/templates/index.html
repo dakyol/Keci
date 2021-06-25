@@ -48,9 +48,12 @@
             <div class="d-lg-none custom-nav-div">
               <p><a href="{% url 'help' %}">Help</a> | <a href="{% url 'keci_advanced_search' %}">Advanced Search</a></p>
             </div>
+            {% if user.is_authenticated %}
+            {% else %}
             <div class="" id="login-div" style="float: right;">
               <a id="id_login" class="btn btn-primary btn-sm" href="{% url 'login' %}">Sign in</a> | <a id="id_register" class="btn btn-danger btn-sm" href="{% url 'register' %}">Sign up</a>
             </div>
+            {% endif %}
           </div>
         </div>
       </header>

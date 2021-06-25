@@ -6,14 +6,21 @@
 <h1>Ola!</h1>
 {{user.get_username}}
 
+<a href="{% url 'logout' %}">log out</a>
+buradan çıkıyorsun
+
+<h2>Projelerinin Listesi de Bu</h2>
 {% for project in projects %}
 <a href="project/{{ project.id }}">{{ project.title }}</a>
 {% endfor %}
 {% endif %}
 
-<h2>Yeni Proje İçin</h2>
-<a href="{% url 'new_project' %}">Buraya basarak gidebilirsiniz</a>
+<h2>Yeni Proje</h2>
+<a href="{% url 'new_project' %}">Buraya</a> basarak yeni proje formuna gidebilirsin asodeux kardeşim.
 
+<h2>Arama ve bütün projeler</h2>
+Daha çok değiştiririz zaten ama arama terimi verilmediğinde bütün projeler görüntüleniyor şu an.
+Direkt bir şey yazmadan sağ üstteki arama yerine de basabilirsin veya <a href="{% url 'keci_search' %}">buradan</a> gidebilirsin.
 {% endblock %}
 
 

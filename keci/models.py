@@ -6,6 +6,8 @@ from django.shortcuts import reverse
 import datetime
 import uuid
 
+import os
+
 # Create your models here.
 
 class Author(models.Model):
@@ -33,6 +35,11 @@ class Branch(models.Model):
     def __str__(self):
         return(self.branches)
 
+def update_filename(instance, filename):
+    path = "documents/"
+    format = str(instance.id) + '.tex'
+    return os.path.join(path, format)
+
 class Project(models.Model):
     title = models.CharField(max_length=200)
     abstract = models.TextField(max_length=9000, default=" ", help_text='Proje özeti...')
@@ -45,10 +52,10 @@ class Project(models.Model):
     authors = models.ManyToManyField(Author)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    document = models.FileField(upload_to='documents/deneme/', blank=True, null=True)
+    document = models.FileField(upload_to=update_filename, blank=True, null=True)
     
     def __str__(self):
         return(self.title)
 
     def get_absolute_url(self):
-        return reverse('help')
+        return reverse('project', self.id)

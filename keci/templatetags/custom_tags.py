@@ -18,8 +18,16 @@ def url_replace(request, field, value):
 @register.inclusion_tag('header-search-hit.html')
 def header_search_hit(request, field, text):
     d = request.GET.copy()
-    query_term = d['query']
-    search_field = d['field']
+
+
+    try:
+        query_term = d['query']
+        search_field = d['field']
+    except:
+        query_term = ''
+        search_field = 'all'
+    print(query_term)
+
     if search_field == 'all':
         search_field = field
     if query_term == "":
@@ -41,8 +49,12 @@ def header_search_hit(request, field, text):
 @register.inclusion_tag('search-hit.html')
 def search_hit(request, field, text):
     d = request.GET.copy()
-    query_term = d['query']
-    search_field = d['field']
+    try:
+        query_term = d['query']
+        search_field = d['field']
+    except:
+        query_term = ''
+        search_field = 'all'
 
     if search_field == 'all':
         search_field = field
