@@ -58,4 +58,4 @@ class Project(models.Model):
         return(self.title)
 
     def get_absolute_url(self):
-        return reverse('project', self.id)
+        return reverse('project', kwargs={ 'id': str(self.id)})

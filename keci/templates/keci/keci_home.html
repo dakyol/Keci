@@ -11,12 +11,17 @@ buradan çıkıyorsun
 
 <h2>Projelerinin Listesi de Bu</h2>
 {% for project in projects %}
-<a href="project/{{ project.id }}">{{ project.title }}</a>
+<a href="project/{{ project.id }}"><button>{{ project.title }}</button></a>
 {% endfor %}
-{% endif %}
 
 <h2>Yeni Proje</h2>
 <a href="{% url 'new_project' %}">Buraya</a> basarak yeni proje formuna gidebilirsin asodeux kardeşim.
+
+{% else %}
+
+<h2> önce sağ üstten bir giriş yap kuzum </h2>
+
+{% endif %}
 
 <h2>Arama ve bütün projeler</h2>
 Daha çok değiştiririz zaten ama arama terimi verilmediğinde bütün projeler görüntüleniyor şu an.
