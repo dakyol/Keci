@@ -7,9 +7,19 @@
 {{user.get_username}}
 
 {% for project in projects %}
-{{ project }}
+<a href="project/{{ project.id }}">{{ project.title }}</a>
 {% endfor %}
 {% endif %}
+
+<h2>Yeni Proje İçin</h2>
+<a href="{% url 'new_project' %}">Buraya basarak gidebilirsiniz</a>
+
+{% endblock %}
+
+
+
+
+
 
 <div class="js-repos-container" id="repos-container" data-pjax-container="">
   <h2 class="f4 hide-sm hide-md mb-1 f5 d-flex flex-justify-between flex-items-center">
@@ -57,8 +67,6 @@
 
 
 </div>
-
-{% endblock %}
 
 
 

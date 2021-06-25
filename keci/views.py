@@ -115,7 +115,7 @@ class new_project_view(LoginRequiredMixin, CreateView):
 
 def project_view(request, id):
     project = get_object_or_404(Project, id=id)
-    fl_path = 'media/documents/deneme/' + str(id) + '.txt'
+    fl_path = 'media/documents/deneme/' + str(id) + '.tex'
     f = open(fl_path, 'r')
     file_content = f.read()
     f.close()
@@ -127,7 +127,7 @@ def help_view(request):
     return render(request, 'keci/help.html', context=context)
 
 def download_pdf(request, id):
-    fl_path = 'media/documents/deneme/' + str(id) + '.pdf'
+    fl_path = 'media/documents/deneme/' + str(id) + '.tex'
     print(fl_path)
     filename = str(id) + ".pdf" #str(id)+'.pdf'
 
